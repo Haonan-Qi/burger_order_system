@@ -1,23 +1,25 @@
-import React,{Fragment} from 'react';
+import React, { Fragment, useState } from "react";
 
-import Logo from '../../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import classes from './SideDrawer.module.css'
+import Logo from "../../../Logo/Logo";
+import NavigationItems from "../NavigationItems/NavigationItems";
+import classes from "./SideDrawer.module.css";
+import Backdrop from "../../../UI/BackDrop/BackDrop";
 
-const sideDrawer = ( props ) => {
-    return (
-        <Fragment>
-            {/* <Backdrop show={props.open} clicked={props.closed}/> */}
-            <div className={classes.SideDrawer}>
-                <div className={classes.Logo}>
-                    <Logo />
-                </div>
-                <nav>
-                    <NavigationItems />
-                </nav>
-            </div>
-        </Fragment>
-    );
+const SideDrawer = (props) => {
+  let attachedClasses = props.open?[classes.SideDrawer, classes.Open]:[classes.SideDrawer, classes.Close];
+  return (
+    <Fragment>
+      <Backdrop show={props.open} clicked={props.closed} />
+      <div className={attachedClasses.join(" ")}>
+        <div className={classes.Logo}>
+          <Logo />
+        </div>
+        <nav>
+          <NavigationItems />
+        </nav>
+      </div>
+    </Fragment>
+  );
 };
 
-export default sideDrawer;
+export default SideDrawer;

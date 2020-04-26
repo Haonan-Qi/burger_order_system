@@ -1,18 +1,29 @@
-import React,{Fragment} from 'react';
-import classes from './Layout.module.css';
-import Toolbar from '../Burger/Navigation/ToolBar/Toolbar';
-import SideDrawer from '../Burger/Navigation/SideDrawer/SideDrawer';
+import React, { Fragment,useState } from "react";
+import classes from "./Layout.module.css";
+import Toolbar from "../Burger/Navigation/ToolBar/Toolbar";
+import SideDrawer from "../Burger/Navigation/SideDrawer/SideDrawer";
 
+const Layout = (props) => {
 
-const layout = ( props ) => (
+  const [drawerState, setDrawerState] = useState({ showSideDrawer: false });
+
+  const sideDrawerClosedHandler = () => {
+    setDrawerState({ showSideDrawer: false });
+  };
+
+  const sideDrawerToggleHandler = () => {
+    setDrawerState((prevState) => {
+      return { showSideDrawer: !prevState.showSideDrawer };
+    });
+  };
+
+  return (
     <Fragment>
-        <div>Toolbar, SideDrawer, Backdrop</div>
-        <Toolbar />
-        <SideDrawer />
-        <main className={classes.Content}>
-            {props.children}
-        </main>
+      <Toolbar drawerToggleClicked={sideDrawerToggleHandler}/>
+      <SideDrawer open={drawerState.showSideDrawer} closed={sideDrawerClosedHandler} />
+      <main className={classes.Content}>{props.children}</main>
     </Fragment>
-);
+  );
+};
 
-export default layout;
+export default Layout;
