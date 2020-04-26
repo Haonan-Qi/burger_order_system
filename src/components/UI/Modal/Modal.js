@@ -1,10 +1,18 @@
 import React from "react";
-import Classess from "./Modal.module.css";
+import classes from "./Modal.module.css";
 
 const modal = (props) => {
-  return <div className={Classess.Modal}>{props.children}</div>;
+  return (
+    <div
+      className={classes.Modal}
+      style={{
+        transform: props.show ? "translateY(0)" : "translateY(-100vh)",
+        opacity: props.show ? "1" : "0",
+      }}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default modal;
-
-
