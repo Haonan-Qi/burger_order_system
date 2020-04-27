@@ -3,6 +3,9 @@ import Button from "../../UI/Button/Button";
 import PropTypes from 'prop-types'
 
 const OrderSummary = (props) => {
+
+
+
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li key={igKey}>
@@ -37,4 +40,4 @@ OrderSummary.propTypes = {
   purchaseContinued:PropTypes.func
 }
 
-export default OrderSummary;
+export default React.memo(OrderSummary);

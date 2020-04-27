@@ -78,6 +78,8 @@ class BurgerBuilder extends Component {
     alert("You continue!");
   };
 
+  
+
   render() {
     const controls = Object.keys(this.state.ingredients);
     const disabledInfo = {

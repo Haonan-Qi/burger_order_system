@@ -21,7 +21,7 @@ const BuildControl = (props) => (
 BuildControl.propTypes = {
   label: PropTypes.string,
   removed: PropTypes.func,
-  disabled: PropTypes.func,
+  disabled: PropTypes.bool,
   added: PropTypes.func,
 };
 
