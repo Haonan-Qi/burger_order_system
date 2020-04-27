@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import classes from "./Modal.module.css";
 import BackDrop from "../BackDrop/BackDrop";
+import PropTypes from 'prop-types'
 
-const modal = (props) => {
+const Modal = (props) => {
   return (
     <Fragment>
       <BackDrop show={props.show} clicked={props.modalClosed} />
@@ -19,4 +20,9 @@ const modal = (props) => {
   );
 };
 
-export default modal;
+Modal.propTypes = {
+  show:PropTypes.bool,
+  modalClosed:PropTypes.func
+}
+
+export default Modal;

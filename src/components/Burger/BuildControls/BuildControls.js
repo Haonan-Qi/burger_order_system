@@ -1,9 +1,13 @@
 import React from "react";
 import classes from "./BuildControls.module.css";
 import BuildControl from "./BuildControl/BuildControl";
+import PropTypes from 'prop-types'
 
-const buildControls = (props) => (
+const BuildControls = (props) => (
   <div className={classes.BuildControls}>
+    <p>
+      Current Price: <strong>{props.price.toFixed(2)} </strong>
+    </p>
     {props.controls.map((type) => (
       <BuildControl
         key={type}
@@ -13,9 +17,6 @@ const buildControls = (props) => (
         disabled={props.disabled[type]}
       />
     ))}
-    <p>
-      Total Pric: <strong>{props.price.toFixed(2)} </strong>
-    </p>
     <button
       className={classes.OrderButton}
       disabled={!props.purchasable}
@@ -26,4 +27,14 @@ const buildControls = (props) => (
   </div>
 );
 
-export default buildControls;
+BuildControls.propTypes = {
+  price:PropTypes.number,
+  controls:PropTypes.array,
+  ingredientAdded:PropTypes.func,
+  ingredientRemoved:PropTypes.func,
+  purchasable:PropTypes.bool,
+  ordered:PropTypes.func
+}
+
+export default BuildControls;
+

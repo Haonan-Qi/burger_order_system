@@ -3,8 +3,9 @@ import classes from "./Toolbar.module.css";
 import Logo from "../../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
+import PropTypes from 'prop-types'
 
-const toolbar = (props) => (
+const Toolbar = (props) => (
   <header className={classes.Toolbar}>
     <DrawerToggle clicked={props.drawerToggleClicked} />
     <div className={classes.Logo}>
@@ -16,4 +17,8 @@ const toolbar = (props) => (
   </header>
 );
 
-export default toolbar;
+Toolbar.propTypes = {
+  drawerToggleClicked:PropTypes.func
+}
+
+export default Toolbar;

@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './DrawerToggle.module.css'
+import PropTypes from 'prop-types'
 
-
-const drawerToggle = (props) => (
+const DrawerToggle = (props) => (
     <div className={classes.DrawerToggle} onClick={props.clicked}>
         <div></div>
         <div></div>
@@ -10,4 +10,8 @@ const drawerToggle = (props) => (
     </div>
 );
 
-export default drawerToggle;
+DrawerToggle.propTypes = {
+    clicked:PropTypes.func
+}
+
+export default DrawerToggle;

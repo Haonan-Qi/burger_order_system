@@ -100,7 +100,6 @@ class BurgerBuilder extends Component {
           />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
-        <div>Build Controls</div>
         <BuildControls
           controls={controls}
           ingredientAdded={this.addIngredientHandler}

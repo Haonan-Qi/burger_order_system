@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import Button from "../../UI/Button/Button";
+import PropTypes from 'prop-types'
 
-const orderSummary = (props) => {
+const OrderSummary = (props) => {
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li key={igKey}>
@@ -29,4 +30,11 @@ const orderSummary = (props) => {
   );
 };
 
-export default orderSummary;
+OrderSummary.propTypes = {
+  ingredients:PropTypes.object,
+  price:PropTypes.number,
+  purchaseCancelled:PropTypes.func,
+  purchaseContinued:PropTypes.func
+}
+
+export default OrderSummary;

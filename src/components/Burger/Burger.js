@@ -1,8 +1,9 @@
 import React from "react";
 import classes from "./Burger.module.css";
+import propTypes from 'prop-types'
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
-import BuildControls from "./BuildControls/BuildControls";
-const burger = (props) => {
+
+const Burger = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey) => {
       //[salad,bacon,meet,greens]
@@ -11,13 +12,21 @@ const burger = (props) => {
       });
     }) //[[],[]]
     .flat();
+
+    let Ingredients = transformedIngredients.length > 0 ? transformedIngredients : <p>Please Start Adding Ingrediengts</p> 
+
+
   return (
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
-      {transformedIngredients}
+      {Ingredients}
       <BurgerIngredient type="bread-bottom" />
     </div>
   );
 };
 
-export default burger;
+Burger.propTypes = {
+  ingredients:propTypes.object
+}
+
+export default Burger;
