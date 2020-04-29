@@ -7,7 +7,6 @@ import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 function App() {
   return (
     <Layout>
-      <p>Test Paragraph</p>
       <BurgerBuilder></BurgerBuilder>
     </Layout>
   );
