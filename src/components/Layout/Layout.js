@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import classes from "./Layout.module.css";
-import Toolbar from "../Burger/Navigation/ToolBar/Toolbar";
-import SideDrawer from "../Burger/Navigation/SideDrawer/SideDrawer";
+import Toolbar from "../Navigation/ToolBar/Toolbar";
+import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 
 const Layout = (props) => {
   const [drawerState, setDrawerState] = useState({ showSideDrawer: false });

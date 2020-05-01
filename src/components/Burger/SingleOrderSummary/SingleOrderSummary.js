@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
 import Button from "../../UI/Button/Button";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-const OrderSummary = (props) => {
-
-
-
+const SingleOrderSummary = (props) => {
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li key={igKey}>
@@ -20,7 +17,7 @@ const OrderSummary = (props) => {
       <p>A delicious burger with the following ingredients:</p>
       <ul>{ingredientSummary}</ul>
       <p>
-        Total Pric: <strong>{props.price.toFixed(2)} </strong>
+        Total Price: <strong>{props.price.toFixed(2)} </strong>
       </p>
       <p>Continue to Checkout?</p>
       <Button btnType="Danger" clicked={props.purchaseCancelled}>
@@ -33,11 +30,11 @@ const OrderSummary = (props) => {
   );
 };
 
-OrderSummary.propTypes = {
-  ingredients:PropTypes.object,
-  price:PropTypes.number,
-  purchaseCancelled:PropTypes.func,
-  purchaseContinued:PropTypes.func
-}
+SingleOrderSummary.propTypes = {
+  ingredients: PropTypes.object,
+  price: PropTypes.number,
+  purchaseCancelled: PropTypes.func,
+  purchaseContinued: PropTypes.func,
+};
 
-export default React.memo(OrderSummary);
+export default React.memo(SingleOrderSummary);

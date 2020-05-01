@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
-import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import SingleOrderSummary from "../../components/Burger/SingleOrderSummary/SingleOrderSummary";
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
@@ -127,7 +127,7 @@ class BurgerBuilder extends Component {
     ) : this.state.loading || !this.state.ingredients ? (
       <Spinner />
     ) : (
-      <OrderSummary
+      <SingleOrderSummary
         ingredients={this.state.ingredients}
         purchaseCancelled={this.purchaseCancelHandler}
         purchaseContinued={this.purchaseContinueHandler}

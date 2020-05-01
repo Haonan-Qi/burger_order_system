@@ -1,5 +1,5 @@
 // Object Counter Converter
-// {ingredients: {salad: x,bacon: y,cheese: z,meat: q}} ====> [[(x)],[(y)],[(z)],[(q)]]
+// {ingredients: {salad: x,bacon: y,cheese: z,meat: q}} ====> [[]*x,[]*y,[]*z,[]*z]
 // Array.flat()
 state = {
   ingredients: {
@@ -24,5 +24,5 @@ let transformedIngredients = Object.keys(props.ingredients)
 
 // fix number format
 <p>
-  Total Pric: <strong>{props.price.toFixed(2)} </strong>
+  Total Price: <strong>{props.price.toFixed(2)} </strong>
 </p>;
