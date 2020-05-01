@@ -6,6 +6,7 @@ import SingleOrderSummary from "../../components/Burger/SingleOrderSummary/Singl
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import { Redirect } from "react-router-dom";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -88,30 +89,31 @@ class BurgerBuilder extends Component {
 
   purchaseContinueHandler = () => {
     //alert("You continue!");
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Sexy Boy",
-        address: {
-          street: "JinLun",
-          zipCode: "3167",
-          contry: "AU",
-        },
-        email: "SexyBoy@gmail.com",
-      },
-      deliveryMode: "fastest",
-    };
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: "Sexy Boy",
+    //     address: {
+    //       street: "JinLun",
+    //       zipCode: "3167",
+    //       contry: "AU",
+    //     },
+    //     email: "SexyBoy@gmail.com",
+    //   },
+    //   deliveryMode: "fastest",
+    // };
     // Firebase will add an unique id property for your data
-    axios
-      .post("/orders.json", order)
-      .then((res) => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch((er) => {
-        this.setState({ loading: false, purchasing: false });
-      });
+    // axios
+    //   .post("/orders.json", order)
+    //   .then((res) => {
+    //     this.setState({ loading: false, purchasing: false });
+    //   })
+    //   .catch((er) => {
+    //     this.setState({ loading: false, purchasing: false });
+    //   });
+    this.props.history.push("/checkout");
   };
 
   render() {
