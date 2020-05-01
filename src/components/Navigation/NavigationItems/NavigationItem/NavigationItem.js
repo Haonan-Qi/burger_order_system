@@ -1,18 +1,19 @@
-import React from 'react';
-import classes from './NavigationItem.module.css'
-import PropTypes from 'prop-types'
+import React from "react";
+import classes from "./NavigationItem.module.css";
+import PropTypes from "prop-types";
+import { NavLink, Link } from "react-router-dom";
 
-const NavigationItem = ( props ) => (
-    <li className={classes.NavigationItem}>
-        <a 
-            href={props.link} 
-            className={props.active ? classes.active : null}>{props.children}</a>
-    </li>
+const NavigationItem = (props) => (
+  <li className={classes.NavigationItem}>
+    <NavLink to={{ pathname: props.link }} activeClassName={classes.active}>
+      {props.children}
+    </NavLink>
+  </li>
 );
 
 NavigationItem.propTypes = {
-    link:PropTypes.string,
-    active:PropTypes.bool
-}
+  link: PropTypes.string,
+  active: PropTypes.bool,
+};
 
 export default NavigationItem;
