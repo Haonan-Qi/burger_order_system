@@ -6,7 +6,6 @@ import SingleOrderSummary from "../../components/Burger/SingleOrderSummary/Singl
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import { Redirect } from "react-router-dom";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
