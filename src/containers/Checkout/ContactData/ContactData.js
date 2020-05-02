@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./ContactData.module.css";
@@ -23,16 +22,18 @@ class ContactData extends Component {
       ingredients: this.props.ingredients,
       price: this.props.price,
       customer: {
-        name: "Max Schwarzmüller",
+        name: "Sexy Boy",
         address: {
-          street: "Teststreet 1",
-          zipCode: "41351",
-          country: "Germany",
+          street: "Alice Street",
+          zipCode: "3168",
+          country: "AU",
         },
-        email: "test@test.com",
+        email: "Sexy_Boy@ComeOn.com",
       },
       deliveryMethod: "fastest",
     };
+    console.log(order);
+    
     axios
       .post("/orders.json", order)
       .then((response) => {
@@ -45,6 +46,8 @@ class ContactData extends Component {
   };
 
   render() {
+    console.log(this.props);
+    
     let form = this.state.loading ? (
       <Spinner />
     ) : (
