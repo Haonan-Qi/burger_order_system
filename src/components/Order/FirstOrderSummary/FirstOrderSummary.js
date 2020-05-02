@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Button from "../../UI/Button/Button";
 import PropTypes from "prop-types";
 
-const SingleOrderSummary = (props) => {
+const FirstOrderSummary = (props) => {
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li key={igKey}>
@@ -30,11 +30,11 @@ const SingleOrderSummary = (props) => {
   );
 };
 
-SingleOrderSummary.propTypes = {
+FirstOrderSummary.propTypes = {
   ingredients: PropTypes.object,
   price: PropTypes.number,
   purchaseCancelled: PropTypes.func,
   purchaseContinued: PropTypes.func,
 };
 
-export default React.memo(SingleOrderSummary);
+export default React.memo(FirstOrderSummary);

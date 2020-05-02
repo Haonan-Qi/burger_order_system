@@ -33,21 +33,19 @@ class ContactData extends Component {
       deliveryMethod: "fastest",
     };
     console.log(order);
-    
     axios
       .post("/orders.json", order)
       .then((response) => {
         this.setState({ loading: false });
-        this.props.history.push("/");
+        this.props.history.push("/orders");
       })
       .catch((error) => {
         this.setState({ loading: false });
       });
+
   };
 
   render() {
-    console.log(this.props);
-    
     let form = this.state.loading ? (
       <Spinner />
     ) : (
