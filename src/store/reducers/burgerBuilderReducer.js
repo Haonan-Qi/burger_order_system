@@ -29,7 +29,6 @@ const burgerBuilderReducer = (state = initialState, action) => {
         },
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
       };
-      break;
     case ActionTyps.REMOVE_INGREDIENT:
       return {
         ...state,
@@ -40,10 +39,8 @@ const burgerBuilderReducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
 
       };
-      break;
     default:
       return state;
-      break;
   }
 };
 

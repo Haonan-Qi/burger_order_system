@@ -1,16 +1,20 @@
 import React, { Fragment } from "react";
 import Button from "../../UI/Button/Button";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 
 const FirstOrderSummary = (props) => {
-  const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
+  const ingredientSummary = Object.keys(props.ings).map((igKey) => {
     return (
       <li key={igKey}>
         <span style={{ textTransform: "capitalize" }}>{igKey}</span>:{" "}
-        {props.ingredients[igKey]}
+        {props.ings[igKey]}
       </li>
     );
   });
+  console.log(props);
+  
   return (
     <Fragment>
       <h3>Your Order</h3>
@@ -37,4 +41,12 @@ FirstOrderSummary.propTypes = {
   purchaseContinued: PropTypes.func,
 };
 
-export default React.memo(FirstOrderSummary);
+const mapStateToProps = (state) => {
+  return {
+    ings: state.bbr.ingredients,
+    price: state.bbr.totalPrice,
+  };
+};
+
+
+export default connect(mapStateToProps)(FirstOrderSummary);
