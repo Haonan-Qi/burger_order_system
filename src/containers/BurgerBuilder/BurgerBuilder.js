@@ -3,29 +3,30 @@ import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import FirstOrderSummary from "../../components/Order/FirstOrderSummary/FirstOrderSummary";
-import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { connect } from "react-redux";
 import * as burgerBuilderActions from "../../store/actions/index";
+import axios from "../../axios-orders";
 
 class BurgerBuilder extends Component {
   state = {
     purchasing: false,
-    loading: false,
-    error: false,
+    /*     loading: false,
+    error: false, */
   };
 
   componentDidMount() {
-    // axios
-    //   .get("ingredients.json")
-    //   .then((req) => {
-    //     this.setState({ ingredients: req.data });
-    //     this.updatePurchaseState(this.props.ings);
-    //   })
-    //   .catch((error) => {
-    //     this.setState({ error: error });
-    //   });
+    /* axios
+      .get("ingredients.json")
+      .then((req) => {
+        this.setState({ ingredients: req.data });
+        this.updatePurchaseState(this.props.ings);
+      })
+      .catch((error) => {
+        this.setState({ error: error });
+      }); */
+    this.props.onInitIngredients();
   }
 
   purchaseHandler = () => {
@@ -59,9 +60,9 @@ class BurgerBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
 
-    let orderSummary = this.state.error ? (
-      <p> Something Wrong> </p>
-    ) : this.state.loading || !this.props.ings ? (
+    let orderSummary = this.props.error ? (
+      <p> Something Wrong </p>
+    ) : !this.props.ings ? (
       <Spinner />
     ) : (
       <FirstOrderSummary
@@ -70,8 +71,8 @@ class BurgerBuilder extends Component {
       />
     );
 
-    let burger = this.state.error ? (
-      <p> Something Wrong> </p>
+    let burger = this.props.error ? (
+      <p> Ingredients can't be loaded! </p>
     ) : this.props.ings ? (
       <Fragment>
         <Burger ingredients={this.props.ings} />
@@ -107,6 +108,7 @@ const mapStateToProps = (state) => {
   return {
     ings: state.bbr.ingredients,
     price: state.bbr.totalPrice,
+    error: state.bbr.error,
   };
 };
 
@@ -116,6 +118,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(burgerBuilderActions.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
       dispatch(burgerBuilderActions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
   };
 };
 
