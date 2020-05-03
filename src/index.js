@@ -4,15 +4,28 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import builderBuilderReducer from "./store/reducers/burgerBuilderReducer";
+
+const rootReducer = combineReducers({
+  bbr: builderBuilderReducer,
+});
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* Provider Wrap everything */}
+    <Provider store={store}>  
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

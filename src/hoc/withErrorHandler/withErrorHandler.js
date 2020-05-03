@@ -5,7 +5,6 @@ const WithErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
     state = {
       error: null,
-
     };
 
     componentDidMount() {
