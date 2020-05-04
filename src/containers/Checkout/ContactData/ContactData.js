@@ -5,9 +5,10 @@ import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 import Input from "../../../components/UI/Input/Input";
 
+import { connect } from "react-redux";
+import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from '../../../store/actions/index';
-import { connect } from 'react-redux';
-import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+
 
 class ContactData extends Component {
   state = {
@@ -87,13 +88,12 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" },
           ],
         },
-        validation:{}, // Not make all data formate same format is better option
+        validation: {}, // Not make all data formate same format is better option
         value: "fastest", // Note If we never switch mode it will be null rather than what display on the screen whih is fires option value
         valid: true,
       },
     },
     formIsValid: false,
-    loading: false,
   };
 
   orderHandler = (event) => {
@@ -110,21 +110,14 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData,
     };
-    axios
-      .post("/orders.json", order)
-      .then((response) => {
-        this.setState({ loading: false });
-        this.props.history.push("/burger-builder");
-      })
-      .catch((error) => {
-        this.setState({ loading: false });
-      });
+    this.props.submitOrder(order)
+
   };
 
   checkValidity(value, rules) {
     let isValid = true; // Note how to make sure all check is being excuting correctly
-    if(!rules){
-      return true
+    if (!rules) {
+      return true;
     }
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
@@ -174,7 +167,7 @@ class ContactData extends Component {
         config: this.state.orderForm[key],
       });
     }
-    let form = this.state.loading ? (
+    let form = this.props.loading ? (
       <Spinner />
     ) : (
       <form onSubmit={this.orderHandler}>
@@ -187,7 +180,7 @@ class ContactData extends Component {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={this.inputChangedHandler.bind(this,formElement.id)}
+            changed={this.inputChangedHandler.bind(this, formElement.id)}
           />
         ))}
 
@@ -206,18 +199,21 @@ class ContactData extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      ings: state.burgerBuilder.ings,
-      price: state.burgerBuilder.totalPrice,
-      loading: state.orders.loading
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
+    ings: state.burgerBuilder.ings,
+    price: state.burgerBuilder.totalPrice,
+    loading: state.loading.loading,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitOrder: (order) => {dispatch(actions.submitOrder(order))},
+  };
+};
 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));

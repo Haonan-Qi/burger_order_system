@@ -11,11 +11,13 @@ import thunk from "redux-thunk";
 import builderBuilderReducer from "./store/reducers/burgerBuilderReducer";
 import ordersReducer from "./store/reducers/ordersReducer";
 import contactDataReducer from "./store/reducers/contactDataReducer";
+import loadingReducer from "./store/reducers/loadingReducer";
 
 const rootReducer = combineReducers({
   burgerBuilder: builderBuilderReducer,
   orders: ordersReducer,
   contactData: contactDataReducer,
+  loading: loadingReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
