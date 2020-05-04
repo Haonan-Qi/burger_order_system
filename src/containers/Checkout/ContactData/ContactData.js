@@ -7,8 +7,7 @@ import Input from "../../../components/UI/Input/Input";
 
 import { connect } from "react-redux";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
-import * as actions from '../../../store/actions/index';
-
+import * as actions from "../../../store/actions/index";
 
 class ContactData extends Component {
   state = {
@@ -110,10 +109,10 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData,
     };
-    this.props.submitOrder(order)
-
+    this.props.submitOrder(order);
+    this.props.history.push({ pathname: "/burger-builder" });
   };
-  submitOrder
+  submitOrder;
   checkValidity(value, rules) {
     let isValid = true; // Note how to make sure all check is being excuting correctly
     if (!rules) {
@@ -155,7 +154,7 @@ class ContactData extends Component {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
 
-    this.setState({ orderForm: updatedOrderForm });
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
   };
 
   //Note --- What Form data we need ?
@@ -167,6 +166,7 @@ class ContactData extends Component {
         config: this.state.orderForm[key],
       });
     }
+
     let form = this.props.loading ? (
       <Spinner />
     ) : (
@@ -184,7 +184,11 @@ class ContactData extends Component {
           />
         ))}
 
-        <Button btnType="Success" clicked={this.orderHandler}>
+        <Button
+          btnType="Success"
+          clicked={this.orderHandler}
+          disabled={!this.state.formIsValid}
+        >
           ORDER
         </Button>
       </form>
@@ -209,7 +213,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitOrder: (order) => {dispatch(actions.submitOrder(order))},
+    submitOrder: (order) => {
+      dispatch(actions.submitOrder(order));
+    },
   };
 };
 
