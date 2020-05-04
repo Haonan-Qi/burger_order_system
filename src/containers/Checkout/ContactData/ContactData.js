@@ -5,6 +5,10 @@ import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 import Input from "../../../components/UI/Input/Input";
 
+import * as actions from '../../../store/actions/index';
+import { connect } from 'react-redux';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -102,7 +106,7 @@ class ContactData extends Component {
       ].value;
     }
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
     };
@@ -202,4 +206,18 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+  return {
+      ings: state.burgerBuilder.ings,
+      price: state.burgerBuilder.totalPrice,
+      loading: state.orders.loading
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
+
