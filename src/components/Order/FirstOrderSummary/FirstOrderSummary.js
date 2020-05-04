@@ -13,7 +13,6 @@ const FirstOrderSummary = (props) => {
       </li>
     );
   });
-  console.log(props);
   
   return (
     <Fragment>
@@ -43,8 +42,8 @@ FirstOrderSummary.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.bbr.ingredients,
-    price: state.bbr.totalPrice,
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
   };
 };
 

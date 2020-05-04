@@ -37,7 +37,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: {
-          salad: action.ingredients.salad,
+          salad: action.ingredients.salad, // Note Change the order of ingredients displied on the burgerBuilder
           bacon: action.ingredients.bacon,
           cheese: action.ingredients.cheese,
           meat: action.ingredients.meat,
