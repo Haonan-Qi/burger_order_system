@@ -113,7 +113,7 @@ class ContactData extends Component {
     this.props.submitOrder(order)
 
   };
-
+  submitOrder
   checkValidity(value, rules) {
     let isValid = true; // Note how to make sure all check is being excuting correctly
     if (!rules) {
