@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./Toolbar.module.css";
-import Logo from "../../Logo/Logo"
+import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const Toolbar = (props) => (
   <header className={classes.Toolbar}>
@@ -12,13 +12,13 @@ const Toolbar = (props) => (
       <Logo />
     </div>
     <nav className={classes.DesktopOnly}>
-      <NavigationItems />
+      <NavigationItems isAuthenticated={props.isAuth} />
     </nav>
   </header>
 );
 
 Toolbar.propTypes = {
-  drawerToggleClicked:PropTypes.func
-}
+  drawerToggleClicked: PropTypes.func,
+};
 
 export default Toolbar;
