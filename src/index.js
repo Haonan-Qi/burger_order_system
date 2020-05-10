@@ -12,12 +12,14 @@ import builderBuilderReducer from "./store/reducers/burgerBuilderReducer";
 import ordersReducer from "./store/reducers/ordersReducer";
 import contactDataReducer from "./store/reducers/contactDataReducer";
 import loadingReducer from "./store/reducers/loadingReducer";
+import authReducer from './store/reducers/authReducer';
 
 const rootReducer = combineReducers({
   burgerBuilder: builderBuilderReducer,
   orders: ordersReducer,
   contactData: contactDataReducer,
   loading: loadingReducer,
+  auth: authReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

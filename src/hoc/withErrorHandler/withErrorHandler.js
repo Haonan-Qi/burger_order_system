@@ -11,11 +11,18 @@ const WithErrorHandler = (WrappedComponent, axios) => {
       this.reqInt = axios.interceptors.request.use((req) => {
         this.setState({ error: null });
         return req;
+      },(err) => {
+        console.log(err)
+
+        return Promise.reject(err)
       });
+
       this.respInt = axios.interceptors.response.use(
         (res) => res,
         (err) => {
+          console.log(err)
           this.setState({ error: err });
+          return Promise.reject(err)
         }
       );
     }

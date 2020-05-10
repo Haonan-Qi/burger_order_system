@@ -8,8 +8,7 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Orders extends Component {
   componentWillMount() {
-    this.props.onInitOrders();
-    console.log(this.props.orders);
+    this.props.onInitOrders(this.props.token);
   }
 
   render() {
@@ -25,25 +24,21 @@ class Orders extends Component {
       ))
     );
 
-    return (
-      <div>
-        {orders}
-      </div>
-    );
+    return <div>{orders}</div>;
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     orders: state.orders.orders,
-    error: state.orders.error,
     loading: state.loading.loading,
+    token: state.auth.token,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInitOrders: () => dispatch(orderActions.initialOrders()),
+    onInitOrders: (token) => dispatch(orderActions.initialOrders(token)),
   };
 };
 

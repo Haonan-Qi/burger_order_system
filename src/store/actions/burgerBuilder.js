@@ -33,13 +33,11 @@ export const initIngredients = () => {
     axios
       .get("ingredients.json")
       .then((req) => {
-        /*         this.setState({ ingredients: req.data });
-        this.updatePurchaseState(this.props.ings); */
         dispatch(setIngredients(req.data));
         
       })
       .catch((error) => {
-        /*         this.setState({ error: error }); */
+        console.log(error)
         dispatch(fetchIngredientsFailed());        
       });
   };

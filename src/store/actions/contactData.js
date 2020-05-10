@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-orders";
 import { loadingStart, loadingEnd } from "./loading";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React from "react";
 
 const purchaseBurgerFail = (error) => {
@@ -12,16 +12,23 @@ const purchaseBurgerFail = (error) => {
 };
 
 export const submitOrder = (orderData) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(loadingStart());
+    const state = getState();
+    console.log(state);
+
     axios
-      .post("/orders.json", orderData)
+      .post("/orders.json?auth=" + state.auth.token, orderData)
       .then((response) => {
         console.log(response.data); // Notice
         dispatch(loadingEnd());
-        return <Route render={(x) => {
-            return <p>Congratlation!!</p>
-        }}/>;
+        return (
+          <Route
+            render={(x) => {
+              return <p>Congratlation!!</p>;
+            }}
+          />
+        );
       })
       .catch((error) => {
         dispatch(purchaseBurgerFail(error));
