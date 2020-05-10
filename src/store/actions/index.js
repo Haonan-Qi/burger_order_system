@@ -5,4 +5,7 @@ export {
 } from "./burgerBuilder";
 export { initialOrders } from "./orders";
 export { submitOrder } from "./contactData.js";
-export { auth } from "./auth";
+export {
+  auth,
+  logout
+} from './auth';
