@@ -7,5 +7,6 @@ export { initialOrders } from "./orders";
 export { submitOrder } from "./contactData.js";
 export {
   auth,
-  logout
+  logout,
+  setAuthRedirectPath,
 } from './auth';

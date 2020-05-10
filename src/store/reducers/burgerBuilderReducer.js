@@ -4,6 +4,7 @@ const initialState = {
   ingredients: null,
   totalPrice: 4,
   error: false,
+  building: false,
 };
 
 const INGREDIENT_PRICES = {
@@ -22,6 +23,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
           ...state.ingredients, //Note ... will not copy all level of object, will only one level, deeper level need to be ... again
           [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
         },
+        building: true,
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
       };
     case actionTypes.REMOVE_INGREDIENT:
@@ -31,6 +33,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
           ...state.ingredients, //Note ... will not copy all level of object, will only one level, deeper level need to be ... again
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
         },
+        building: true,
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
     case actionTypes.SET_INGREDIENTS:
@@ -42,7 +45,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
           cheese: action.ingredients.cheese,
           meat: action.ingredients.meat,
         },
-        totalPrice:4,
+        totalPrice: 4,
         error: false,
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
