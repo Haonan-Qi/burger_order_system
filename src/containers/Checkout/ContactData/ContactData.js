@@ -108,11 +108,12 @@ class ContactData extends Component {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
+      userId: this.props.userId
     };
+    console.log(order)
     this.props.submitOrder(order);
     this.props.history.push({ pathname: "/burger-builder" });
   };
-  submitOrder;
   checkValidity(value, rules) {
     let isValid = true; // Note how to make sure all check is being excuting correctly
     if (!rules) {
@@ -205,9 +206,11 @@ class ContactData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.burgerBuilder.ings,
+    ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     loading: state.loading.loading,
+   /*  token: state.auth.token, */ // Note: this vs Anti-pattern get State Way 
+    userId: state.auth.userId,
   };
 };
 

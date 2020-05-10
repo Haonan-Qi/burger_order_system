@@ -12,13 +12,12 @@ const fetchOrdersFailed = (error) => {
 
 export const initialOrders = (token) => {
   return (dispatch,getState) => {  //Note Review how this can be passed && this work but it is anti-pattern for redux flow logic
-    const a = getState();
-    console.log('State');
-    
-    console.log(a);
+    const state = getState();
+    console.log(state.auth.userId);
+    const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + state.auth.userId + '"';
     
     axios
-      .get("/orders.json?auth=" + token) //Not how to pass auth to paramas through url
+      .get("/orders.json" + queryParams) //Not how to pass auth to paramas through url
       .then((res) => {
         dispatch(loadingStart());
         const fetchedOrders = [];

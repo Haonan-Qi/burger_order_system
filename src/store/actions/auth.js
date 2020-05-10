@@ -94,7 +94,7 @@ export const authCheckState = () => {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem("expirationDate"));
-      if (expirationDate <= new Date()) {
+      if (expirationDate <= new Date()) {  // Note Learn how to Debuging with breakpoint
         dispatch(logout());
       } else {
         const userId = localStorage.getItem("userId");
