@@ -153,7 +153,7 @@ class Auth extends Component {
     }
 
     let authRedirect = this.props.isAuthenticated ? (
-      <Redirect to="/checkout" />
+      <Redirect to={this.props.authRedirect} />
     ) : null;
 
     return (
