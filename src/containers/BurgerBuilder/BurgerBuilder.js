@@ -13,20 +13,9 @@ import * as actions from '../../store/actions/index';
 class BurgerBuilder extends Component {
   state = {
     purchasing: false,
-    /*     loading: false,
-    error: false, */
   };
 
   componentDidMount() {
-    /* axios
-      .get("ingredients.json")
-      .then((req) => {
-        this.setState({ ingredients: req.data });
-        this.updatePurchaseState(this.props.ings);
-      })
-      .catch((error) => {
-        this.setState({ error: error });
-      }); */
     this.props.onInitIngredients();
   }
 
