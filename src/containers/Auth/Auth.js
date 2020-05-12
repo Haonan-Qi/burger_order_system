@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
@@ -47,7 +47,10 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.buildingBurger && this.props.authRedirectPath !== "/burger-Builder") {
+    if (
+      !this.props.buildingBurger &&
+      this.props.authRedirectPath !== "/burger-Builder"
+    ) {
       this.props.onSetAuthRedirectPath();
     }
   }
@@ -150,22 +153,24 @@ class Auth extends Component {
     }
 
     let authRedirect = this.props.isAuthenticated ? (
-      <Redirect to={this.props.authRedirectPath} />
+      <Redirect to="/checkout" />
     ) : null;
 
     return (
-      <div className={classes.Auth}>
+      <Fragment>
         {authRedirect}
-        {errorMessage}
-        <h2>{!this.state.isSignup ? "SIGN IN" : "SIGN UP"}</h2>
-        <form onSubmit={this.submitHandler}>
-          {form}
-          <Button btnType="Success">SUBMIT</Button>
-        </form>
-        <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-          SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-        </Button>
-      </div>
+        <div className={classes.Auth}>
+          {errorMessage}
+          <h2>{!this.state.isSignup ? "SIGN IN" : "SIGN UP"}</h2>
+          <form onSubmit={this.submitHandler}>
+            {form}
+            <Button btnType="Success">SUBMIT</Button>
+          </form>
+          <Button clicked={this.switchAuthModeHandler} btnType="Danger">
+            SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
+          </Button>
+        </div>
+      </Fragment>
     );
   }
 }
@@ -185,11 +190,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
-    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/burger-Builder")),
+    onSetAuthRedirectPath: () =>
+      dispatch(actions.setAuthRedirectPath("/burger-Builder")),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withErrorHandler(Auth, axios));
+)(withErrorHandler(withRouter(Auth), axios));
