@@ -15,12 +15,10 @@ export const submitOrder = (orderData) => {
   return (dispatch, getState) => {
     dispatch(loadingStart());
     const state = getState();
-    console.log(state);
 
     axios
       .post("/orders.json?auth=" + state.auth.token, orderData)
       .then((response) => {
-        console.log(response.data); // Notice
         dispatch(loadingEnd());
         return (
           <Route

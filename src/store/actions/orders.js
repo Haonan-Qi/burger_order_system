@@ -13,7 +13,6 @@ const fetchOrdersFailed = (error) => {
 export const initialOrders = (token) => {
   return (dispatch,getState) => {  //Note Review how this can be passed && this work but it is anti-pattern for redux flow logic
     const state = getState();
-    console.log(state.auth.userId);
     const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + state.auth.userId + '"';
     
     axios

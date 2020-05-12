@@ -12,7 +12,6 @@ const WithErrorHandler = (WrappedComponent, axios) => {
         this.setState({ error: null });
         return req;
       },(err) => {
-        console.log(err)
 
         return Promise.reject(err)
       });
@@ -20,7 +19,7 @@ const WithErrorHandler = (WrappedComponent, axios) => {
       this.respInt = axios.interceptors.response.use(
         (res) => res,
         (err) => {
-          console.log(err)
+          g(err)
           this.setState({ error: err });
           return Promise.reject(err)
         }
