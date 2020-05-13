@@ -34,7 +34,7 @@ ReactDOM.render(
   <React.StrictMode>
     {/* Provider Wrap everything */}
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter> {/* Remember to set Root Path accordingly When deploy this app */}
         <App />
       </BrowserRouter>
     </Provider>
